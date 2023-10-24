@@ -1,0 +1,44 @@
+/* Add global styles for the app if not using scoped CSS */
+/* Example global styles */
+.mat-toolbar {
+    height: 64px; /* Set the height of the toolbar */
+    
+  }
+  .sticky-top{
+    background-color: green;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+  }
+  
+  .logo-icon {
+    margin-right: 8px; /* Adjust the margin between the icon and text */
+    font-size: 36px; /* Set the font size of the icon */
+  }
+  
+  .logo-text {
+    font-size: 24px; /* Set the font size of the logo text */
+    font-weight: bold;
+    text-decoration: none;
+    color: white; /* Set the color of the logo text */
+  }
+  
+  .flex-spacer {
+    flex: 1; /* Pushes the logout button to the right */
+  }
+  
+  .logout-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: white; /* Set the color of the logout text */
+    text-decoration: none;
+  }
+  
+  .logout-icon {
+    margin-right: 8px; /* Adjust the margin between the icon and text */
+  }
+  

@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Welcome to WebLearn</h1>
+<div  *ngIf="!rejectApproval">
+<div mat-dialog-content class="h-100 w-100">
+    <iframe [src]="cv" width="100%" height="100%"></iframe>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+    <button (click)="closeDialog()" mat-raised-button color="warn">Close</button>
+</div>
+</div>
+<div  *ngIf="rejectApproval">
+    <div mat-dialog-content class="h-50 w-50">
+        <mat-form-field appearance="fill" class="w-100">
+            <textarea matInput [(ngModel)]="data.reason" placeholder="Reason for rejection"></textarea>
+            <mat-error *ngIf="form.get('reason')?.hasError('required')">Reason is required</mat-error>
+          </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="d-flex justify-content-end">
+        <button (click)="closeDialog()" mat-raised-button color="bg-success">Submit</button>
+    </div>
+
+    
+</div>

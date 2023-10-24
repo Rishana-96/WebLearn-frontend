@@ -1,0 +1,48 @@
+/* Style for User List Table */
+.mat-elevation-z8 {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  .mat-table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+    border-collapse: collapse;
+  }
+  
+  /* Style for Table Headers */
+  .mat-header-cell, .mat-cell {
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .mat-header-row, .mat-row {
+    background-color: #f9f9f9;
+  }
+  
+  /* Style for Action Buttons */
+  .mat-cell button {
+    margin-right: 10px;
+  }
+  
+  /* Style for Paginator */
+  .mat-paginator {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Optional: Style for Paginator Page Size Options */
+  .mat-paginator-page-size {
+    margin-right: 20px;
+  }
+  
+  /* Optional: Style for Paginator Buttons */
+  .mat-paginator-navigation-next, .mat-paginator-navigation-previous {
+    margin: 0 5px;
+  }
+  
