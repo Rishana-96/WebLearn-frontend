@@ -5,14 +5,15 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { VerifyComponent } from './verify/verify.component';
+import { userlogedGuard, userlogoutGuard } from '../guard/user.guard';
 
 const routes: Routes = [
 
-  { path: '', component: UserHomeComponent },
-  { path: 'login', component: UserLoginComponent},
-  { path: 'login/:id', component: UserLoginComponent},
-  { path: 'register', component: UserRegisterComponent },
-  { path: 'verify', component: VerifyComponent },
+  { path: '', component: UserHomeComponent  },
+  { path: 'login', component: UserLoginComponent ,canActivate:[userlogedGuard]},
+  { path: 'login/:id', component: UserLoginComponent,canActivate:[userlogedGuard]},
+  { path: 'register', component: UserRegisterComponent,canActivate:[userlogedGuard] },
+  { path: 'verify', component: VerifyComponent,canActivate:[userlogedGuard] },
 
 
 ];

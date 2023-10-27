@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgConfirmModule } from 'ng-confirm-box';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 
 
@@ -21,6 +23,7 @@ import { NgConfirmModule } from 'ng-confirm-box';
     BrowserAnimationsModule,
     HttpClientModule,
     NgConfirmModule,
+    CarouselModule,
     
     ToastrModule.forRoot() // ToastrModule added here
     

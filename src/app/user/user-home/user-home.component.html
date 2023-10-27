@@ -1,27 +1,36 @@
 <app-user-nav></app-user-nav>
-<div id="carouselExampleIndicators" class="carousel slide">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<!------------main-wrapper start https://elearn.websitelayout.net/-->
+<div class="carousel-container" [@slide]="currentIndex">
+  <div class="carousel-slide" *ngFor="let image of images; let i = index" [hidden]="i !== currentIndex">
+    <img [src]="'assets/home/' + image" alt="Slide {{ i }}">
+    <div class="carousel-text">
+      <h2>{{ carouselItems[i].title }}</h2>
+      <p>{{ carouselItems[i].description }}</p>
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="assets/home/istockphoto-542111792-612x612.jpg" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="assets/home/istockphoto-542111792-612x612.jpg" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="assets/home/istockphoto-542111792-612x612.jpg" class="d-block w-100" alt="...">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
+</div>
+
+<!--------------------------------------Category section--------------->
+<div class="category-section">
+  <mat-card class="cat-card" *ngFor="let category of categories">
+    <div class="card-icon" *ngIf="category.icon" [ngStyle]="{'backgroundImage':'url(' + category-icon + ')'}"></div>
+    <h2>{{category.name}}</h2>
+
+  </mat-card>
+
+</div>
+<!----------------course section------------->
+<div class="course-section">
+  <h1 class="course-section-heading">
+    <span>Our Online Courses</span>
+  </h1>
+  <div class="card-container">
+    <mat-card class="card" *ngFor="let course of courses">
+      <div class="card-image" [style.backgroundImage]="'url(' + course.imagePath+ ')'"
+        [style.background-size]="'cover'">
+      </div>
+      <h2>{{course.name}}</h2>
+      <p>${{course.amount}}</p>
+    </mat-card>
+  </div>
+</div>

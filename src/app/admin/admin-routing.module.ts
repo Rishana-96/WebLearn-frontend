@@ -5,12 +5,13 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { TutorListComponent } from './tutor-list/tutor-list.component';
+import { adminlogedGuard, adminlogoutGuard } from '../guard/admin.guard';
 
 const routes: Routes = [
-  { path: '', component:AdminLoginComponent},
-  { path:'dashboard',component:AdminDashboardComponent},
-  { path:'userList',component:UserListComponent},
-  { path:'tutorList',component:TutorListComponent}
+  { path: '', component:AdminLoginComponent,canActivate:[adminlogoutGuard]},
+  { path:'dashboard',component:AdminDashboardComponent,canActivate:[adminlogedGuard]},
+  { path:'userList',component:UserListComponent,canActivate:[adminlogedGuard]},
+  { path:'tutorList',component:TutorListComponent,canActivate:[adminlogedGuard]}
 ];
 
 @NgModule({

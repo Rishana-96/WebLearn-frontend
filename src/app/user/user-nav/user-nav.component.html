@@ -1,14 +1,19 @@
 <mat-toolbar class="custom-toolbar">
-    <div class="logo">   
+    <div class="logo text-white">
         <span>WEBLEARN</span>
     </div>
     <div class="spacer"></div>
-      <div class="custom-button">
-      <button mat-raised-button  routerLink="/login">Login</button>
-      <button mat-raised-button  routerLink="/register">Register</button>
-      </div>
+    <div class="centered-buttons">
+        <button mat-raised-button routerLink="/">Home</button>
+        <button mat-raised-button routerLink="/courses">Courses</button>
+        <button mat-raised-button routerLink="/tutors">Tutors</button>
+    </div>
+    <div *ngIf="!userLog" class="custom-button">
+        <button mat-raised-button routerLink="/login" class="margin-right-button">Login</button>
+        <button mat-raised-button routerLink="/register">Register</button>
+    </div>
+    <div *ngIf="userLog" class="custom-button">
+        <button mat-raised-button (click)="logout()" class="margin-right-button">Logout</button>
+        <button mat-raised-button routerLink="/profile">My Profile</button>
+    </div>
 </mat-toolbar>
-
-
-
-
