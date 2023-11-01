@@ -28,60 +28,78 @@ export class TutorLoginComponent {
 
  
   ngOnInit(): void {
-   this.tutorLoginForm = this.fb.group({
-    email:this.emailControl,
-    password:this.passwordControl,
-    
-  
-   })
-   this.id = this.route.snapshot.paramMap.get('id')
-   if(this.id){
-     this.verifyTutor()
-   }
+       this.tutorLoginForm = this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required]]
+      });
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.verifyTutor();
+    }
+   
   }
   
   verifyTutor(){
+    
     this.tutorService.verifyTutor(this.id).subscribe(
-      (result)=>{
-        this.toastr.warning('please wait for admin approval and we will inform in your mail')
+      (result) => {
+        localStorage.setItem('tutorSecret',result.toString())
+        this.router.navigate(['/tutor-login'])
       },
-      (err)=>{
-        if(err.error.message){
-          this.toastr.error(err.error.message);
-        }else{
-          this.toastr.error('something went wrong')
-        }
+      (err) => {
+        const errorMessage = err.error.message || 'Something went wrong';
+        this.toastr.error(errorMessage);
       }
-    )
+    );
   }
 
-  tutorLogin(){
-    if(this.tutorLoginForm.valid){
-      const  user = this.tutorLoginForm.value;
-       console.log(user);
-       this.tutorService.tutorLogin(user).subscribe((res)=>{
-        localStorage.setItem('tutorSecret', res.toString());
-        this.toastr.warning('An email will be sent to your mail after Admin approval')
-         
-       },(err)=>{
-         if(err.error.message){
-           this.toastr.error(err.error.message);
-         }else{
-           this.toastr.error("something went wrong")
-         }
-       })
-       
-     }else{
-       this.toastr.error('Something went wrong')
-       
-     }
+  // tutorLogin(){
+  //   if (this.tutorLoginForm.valid) {
+  //     const tutor = this.tutorLoginForm.value;
+  //     this.tutorService.tutorLogin(tutor).subscribe(
+  //       (res) => {
+          
+  //         localStorage.setItem('tutorSecret', res.toString());
+  //         this.router.navigate(['/tutor/home']);
+  //       },
+  //       (err) => {
+  //         const errorMessage = err.error.message || 'Something went wrong';
+  //         this.toastr.error(errorMessage);
+  //       }
+  //     );
+  //   } else {
+  //     this.toastr.error('Please fill in all required fields.');
+  //   }
+  // }
+  tutorLogin() {
+    
+    if (this.tutorLoginForm.valid) {
+      const tutor = this.tutorLoginForm.value;
+      
+      
+      this.tutorService.tutorLogin(tutor).subscribe(
+        (res) => {
+          
+            console.log(res,'ejiaudioj');
+            // Tutor application is approved
+            localStorage.setItem('tutorSecret', res.toString());
+          this.router.navigate(['/tutor/home'])
+        },
+        (err) => {
+          const errorMessage = err.error.message || 'Something went wrong';
+          this.toastr.error(errorMessage);
+        }
+      );
+    } else {
+      this.toastr.error('Please fill in all required fields.');
+    }
   }
+  
+  
 
 
 
 
-onLoginClick(){
-  this.tutorLoginForm.markAllAsTouched();
-}
+
 
 }

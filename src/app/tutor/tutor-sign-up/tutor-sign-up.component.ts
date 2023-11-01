@@ -28,8 +28,7 @@ export class TutorSignUpComponent implements OnInit {
   }
   
   tutorRegistration(): void {
-    if (this.tutorSignupForm.valid && !this.invalidFile) {
-      alert('hi')
+    if (this.tutorSignupForm.valid && !this.invalidFile  && this.cvFile) {
       const form = new FormData()
 
       const tutor = this.tutorSignupForm.value;
@@ -45,8 +44,8 @@ export class TutorSignUpComponent implements OnInit {
           this.toastr.success('please verify you email');
         },
         (error) => {
-          if(error.err.message){
-            this.toastr.error(error.err.message);
+          if(error.error && error.error.message){
+            this.toastr.error(error.error.message);
           }else{
             this.toastr.error('Registration failed. Please try again.');
           }

@@ -1,7 +1,9 @@
-import { Component,Inject, OnInit } from '@angular/core';
+import { Component,Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
+import { AdminService } from 'src/app/service/admin.service';
 import { environment } from 'src/environments/environment.development';
 
 @Component({
@@ -9,17 +11,20 @@ import { environment } from 'src/environments/environment.development';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css']
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent implements OnInit,OnDestroy {
   cvUrl:SafeResourceUrl;
   inputData :any
   cv:any
   form:FormGroup
   rejectApproval:boolean=false
+  tutorId!:string 
+  reason!:string 
 
   constructor(private ref:MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private sanitizer:DomSanitizer,
-    private fb:FormBuilder
+    private adminService:AdminService,
+    private fb:FormBuilder,
     ){
     this.cvUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data.cvUrl)
     this.form=this.fb.group({
@@ -28,10 +33,12 @@ export class DialogComponent implements OnInit {
   }
 
 
+
   ngOnInit(): void {
     this.inputData = this.data
     if(this.inputData.title == 'reject approval'){
       this.rejectApproval = true 
+      this.tutorId = this.inputData.tutorId
     }else{
       this.setPdf()
     }
@@ -40,7 +47,19 @@ export class DialogComponent implements OnInit {
   }
 
   closeDialog(){
-    this.ref.close();
+    
+    
+      this.adminService.rejectTutor(this.tutorId,this.reason).subscribe({
+        next: (res)=>{
+          this.ref.close();
+        },error:(err) =>{
+          console.log(err);
+          
+        },complete:()=>{
+  
+        } 
+      })
+    
   }
 
   setPdf(){
@@ -52,4 +71,7 @@ export class DialogComponent implements OnInit {
     this.cv =  this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
+  ngOnDestroy(): void {
+    
+  }
 }

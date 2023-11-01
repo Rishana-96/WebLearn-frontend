@@ -1,3 +1,4 @@
+
 .carousel-container {
     width: 100%;
     overflow: hidden;
@@ -65,6 +66,9 @@ max-width: 100%;
   .category-section {
     background-image: url('../../../assets/home/img1.jpg');
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px; /* Adjust the gap between columns and rows */
     background-position: center;
     background-repeat: no-repeat;
     padding: 50px; /* Adjust the padding according to your design */
@@ -81,6 +85,8 @@ max-width: 100%;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 250px; /* Adjust the width of the card */
+    
   }
   .card-icon {
     width: 100px; /* Adjust the icon width */
@@ -99,6 +105,24 @@ max-width: 100%;
 .cat-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  max-width: 1200px; /* Adjust the maximum width of the grid */
+  width: 100%;
+}
+.category-section-heading{
+  text-align: center;
+  font-weight: bold;
+  color: rgb(7, 8, 8);
+}
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .categories-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 }
 
 
@@ -195,3 +219,72 @@ max-width: 100%;
   .card:hover .card-image {
     transform: scale(1.05); /* Add a scale effect on hover */
   }
+  /* Default styles for larger screens */
+
+/* Adjust styles for smaller screens using media queries */
+@media (max-width: 768px) {
+  /* Styles for screens up to 768px width */
+  .carousel-text h2 {
+    font-size: 24px; /* Decrease font size for smaller screens */
+  }
+  
+  .categories-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust grid columns for smaller screens */
+  }
+
+  .cat-card {
+    width: 150px; /* Adjust card width for smaller screens */
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust card columns for smaller screens */
+    gap: 10px; /* Adjust the gap between cards for smaller screens */
+  }
+  .course-section {
+    margin: 20px 0; /* Adjust margin for smaller screens */
+  }
+}
+
+.card-image.instructor1 {
+  background-image: url('../../../assets/home/instructor3.jpg'); /* Path to the first course image */
+}
+.card-image.course2 {
+  background-image: url('../../../assets/home/instructor2.jpg'); /* Path to the first course image */
+}
+.card-image.course3 {
+  background-image: url('../../../assets/home/instructor3.jpg'); /* Path to the first course image */
+}
+.card-image.course4 {
+  background-image: url('../../../assets/home/instructop4.jpg'); /* Path to the first course image */
+}
+.card-image.course5 {
+  background-image: url('../../../assets/home/instructor5.jpeg'); /* Path to the first course image */
+}
+.card-image.course6 {
+  background-image: url('../../../assets/home/instructor6.jpg'); /* Path to the first course image */
+}
+
+.instructor-section-heading{
+  font-weight: bold;
+  color: rgb(7, 115, 135);
+  text-align: center;
+  font-weight: bold;
+  margin-top: 50px;
+  
+}
+
+.tutor-button {
+  display: flex;
+  align-self: flex-end; /* Align the button to the right */
+  margin-left: 1000px; /* Adjust the margin-right as needed */
+  margin-top: 20px;
+}
+
+.tutor-button button {
+  background-color: green;
+  width: 150px; /* Adjust the width of the button */
+  color: #fff;
+  font-weight: bold;
+  align-self: flex-end; /* Align the button to the right */
+  text-transform: uppercase; /* Optionally transform text to uppercase */
+}

@@ -3,17 +3,31 @@
         <span>WEBLEARN</span>
     </div>
     <div class="spacer"></div>
-    <div class="centered-buttons">
+    <div class="centered-buttons" *ngIf="!isMobile">
+        <!-- Your existing buttons for larger screens -->
         <button mat-raised-button routerLink="/">Home</button>
         <button mat-raised-button routerLink="/courses">Courses</button>
         <button mat-raised-button routerLink="/tutors">Tutors</button>
+        <!-- Add more buttons as needed -->
     </div>
-    <div *ngIf="!userLog" class="custom-button">
-        <button mat-raised-button routerLink="/login" class="margin-right-button">Login</button>
+    <div *ngIf="!userLog && !isMobile" class="custom-button">
+        <!-- Your existing login and register buttons for larger screens -->
+        <button mat-raised-button routerLink=" /login" class="margin-right-button">Login</button>
         <button mat-raised-button routerLink="/register">Register</button>
     </div>
-    <div *ngIf="userLog" class="custom-button">
-        <button mat-raised-button (click)="logout()" class="margin-right-button">Logout</button>
-        <button mat-raised-button routerLink="/profile">My Profile</button>
+    <div *ngIf="userLog && !isMobile" class="custom-button">
+        <!-- Your existing login and register buttons for larger screens -->
+        <button mat-raised-button routerLink=" /login" class="margin-right-button" (click)="logout()">Logout</button>
+        <button mat-raised-button routerLink="/register">Profile</button>
     </div>
+    <button mat-icon-button *ngIf="isMobile" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu *ngIf="isMobile" [overlapTrigger]="false">
+        <!-- Your menu items for smaller screens -->
+        <button mat-menu-item routerLink="/">Home</button>
+        <button mat-menu-item routerLink="/courses">Courses</button>
+        <button mat-menu-item routerLink="/tutors">Tutors</button>
+        <!-- Add more menu items as needed -->
+    </mat-menu>
 </mat-toolbar>

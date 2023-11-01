@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-verify',
+  selector: 'app-verified',
   templateUrl: './verify.component.html',
   styleUrls: ['./verify.component.css']
 })

@@ -10,18 +10,9 @@
   </div>
 </div>
 
-<!--------------------------------------Category section--------------->
-<div class="category-section">
-  <mat-card class="cat-card" *ngFor="let category of categories">
-    <div class="card-icon" *ngIf="category.icon" [ngStyle]="{'backgroundImage':'url(' + category-icon + ')'}"></div>
-    <h2>{{category.name}}</h2>
-
-  </mat-card>
-
-</div>
-<!----------------course section------------->
-<div class="course-section">
-  <h1 class="course-section-heading">
+<!--------------course section-->
+<div class=" course-section ">
+  <h1 class=" course-section-heading">
     <span>Our Online Courses</span>
   </h1>
   <div class="card-container">
@@ -34,3 +25,37 @@
     </mat-card>
   </div>
 </div>
+
+<!--------------------------------------Category section--------------->
+<div class="category-section">
+  <h1 class=" category-section-heading">
+    <span> Popular Categories</span>
+  </h1>
+  <div class="categories-grid">
+    <mat-card class="cat-card" *ngFor="let category of categories">
+      <div class="card-icon" *ngIf="category.icon">
+        <mat-icon>{{category.icon}}</mat-icon>
+        <h2>{{category.name}}</h2>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<!--------------Tutor section-->
+<div class=" instructor-section ">
+  <h1 class=" instructor-section-heading">
+    <span>Experience Instructors</span>
+  </h1>
+  <div class="card-container">
+    <mat-card class="card" *ngFor="let instructor of instructors">
+      <div class="card-image" [style.backgroundImage]="'url(' + instructor.imagePath+ ')'"
+        [style.background-size]="'cover'">
+      </div>
+      <h2>{{instructor.name}}</h2>
+      <p>{{instructor.courseName}}</p>
+    </mat-card>
+  </div>
+  <div class="tutor-button">
+    <button mat-raised-button color="success" value="" routerLink="/tutor">Become Instructor</button>
+  </div>
+</div>
+<app-footer></app-footer>

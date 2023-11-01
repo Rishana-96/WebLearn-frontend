@@ -13,6 +13,7 @@ import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 import {NgConfirmModule} from 'ng-confirm-box';
 import { TutorListComponent } from './tutor-list/tutor-list.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { ApproveTutorComponent } from './approve-tutor/approve-tutor.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { DialogComponent } from './dialog/dialog.component';
     AdminNavComponent,
     AdminSidebarComponent,
     TutorListComponent,
-    DialogComponent
+    DialogComponent,
+    ApproveTutorComponent
   ],
   imports: [
     CommonModule,

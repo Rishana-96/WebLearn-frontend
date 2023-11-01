@@ -12,8 +12,12 @@ export class UserNavComponent implements OnInit {
   constructor(private _router:Router,private _toastr:ToastrService){}
 
   userLog:boolean=false
-
+  isMobile: boolean = false;
   ngOnInit(): void {
+    this.checkScreenWidth();
+    window.addEventListener('resize', () => {
+      this.checkScreenWidth();
+    });
     let token:string | null = localStorage.getItem('userSecret')
     
     if(token){
@@ -21,10 +25,13 @@ export class UserNavComponent implements OnInit {
     }
     
   }
+  checkScreenWidth() {
+    this.isMobile = window.innerWidth <= 768;
+  }
 
   logout(){
     localStorage.removeItem('userSecret')
-    this._router.navigate(['/login'])
+    this._router.navigate(['/tutor/tutor-login'])
   }
   toggleMenu(){}
 

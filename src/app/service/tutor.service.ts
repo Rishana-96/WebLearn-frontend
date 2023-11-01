@@ -23,10 +23,12 @@ export class TutorService {
     return this.http.post(`${this.apiUrl}/verifyTutor?id=`+id,httpOptions)
    }
    tutorLogin(tutor:any):Observable<any>{
+    alert('kkk')
     return this.http.post(`${this.apiUrl}/tutor-login`,tutor,httpOptions)
    }
    tutorDetails():Observable<any>{
     return this.http.get(`${this.apiUrl}/tutorList`,{withCredentials:true})
    }
+
   
 }

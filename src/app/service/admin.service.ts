@@ -1,7 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable,  } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 const httpOptions = {
   headers : new HttpHeaders({
@@ -32,6 +35,7 @@ export class AdminService {
   }
   blockUser(id:string):Observable<any>{
     const requestBody = {id:id};
+    
     return this.http.patch(`${this.apiUrl}/blockUser`,requestBody,httpOptions)
 
   }
@@ -46,5 +50,31 @@ export class AdminService {
   rejectTutor(tutorId:string,status:string):Observable<any>{
     const requestBody = {id:tutorId,status:status}
     return this.http.put<any>(`${this.apiUrl}/reject-tutor`,requestBody,httpOptions)
+  }
+
+  blockTutor(id: string): Observable<any> {
+    const requestBody = { id: id };
+    return this.http.patch(`${this.apiUrl}/blockTutor`, requestBody, httpOptions)
+      .pipe(
+        catchError(this.handleError) // Handle errors using a centralized error handling function
+      );
+  }
+  
+  private handleError(error: any): Observable<any> {
+    console.error('Error blocking tutor:', error);
+    return throwError(error);
+  }
+  
+  unblockTutor(id:string):Observable<any>{
+    const requestBody = { id:id};
+    return this.http.patch(`${this.apiUrl}/unblockTutor`,requestBody,httpOptions)
+  }
+
+  loadApprovedTutors(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/tutorList`, { withCredentials: true }).pipe(
+      map((response: any[]) => {
+        return response.filter(tutor => tutor.is_approve === 'approved');
+      })
+    );
   }
 }

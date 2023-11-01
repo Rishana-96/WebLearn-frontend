@@ -2,6 +2,8 @@
 .mat-elevation-z8 {
     margin-top: 20px;
     overflow-x: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    border-radius: 8px; /* Rounded corners */
   }
   
   .mat-table {
@@ -17,7 +19,7 @@
     padding: 12px;
     text-align: left;
     font-weight: bold;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 1px solid #ccc;
   }
   
   .mat-header-row, .mat-row {
@@ -45,4 +47,15 @@
   .mat-paginator-navigation-next, .mat-paginator-navigation-previous {
     margin: 0 5px;
   }
+  .mat-cell button.mat-raised-button {
+    background-color: #ff4081; /* Pink color for block button */
+    color: white;
+}
+.mat-cell button.mat-raised-button.primary {
+  background-color: #03a9f4; /* Blue color for unblock button */
+}
+.mat-paginator-navigation-next,
+.mat-paginator-navigation-previous {
+    margin: 0 5px;
+}
   

@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgConfirmModule } from 'ng-confirm-box';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { CommonInterceptor } from './interceptor/common.interceptor';
 
 
 
@@ -28,7 +29,13 @@ import { trigger, style, animate, transition } from '@angular/animations';
     ToastrModule.forRoot() // ToastrModule added here
     
   ],
-  providers: [],
+  providers: [
+    {
+    provide:HTTP_INTERCEPTORS,
+    useClass:CommonInterceptor,
+    multi:true,
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

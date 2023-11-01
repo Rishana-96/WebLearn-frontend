@@ -10,18 +10,24 @@
                     <form [formGroup]="tutorLoginForm" (ngSubmit)="tutorLogin()">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" [formControl]="emailControl" placeholder="Enter your email">
-                            <div *ngIf="emailControl.hasError('required')  && emailControl.touched " class="text-danger">Email is required</div>
-                        </div> 
+                            <input type="email" class="form-control" id="email" formControlName="email"
+                                placeholder="Enter your email">
+                            <div *ngIf="tutorLoginForm.get('email')?.hasError('required') && tutorLoginForm.get('email')?.touched"
+                                class="text-danger">Email is required</div>
+                            <div *ngIf="tutorLoginForm.get('email')?.hasError('email') && tutorLoginForm.get('email')?.touched"
+                                class="text-danger">Invalid email format</div>
+                        </div>
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" [formControl]="passwordControl" placeholder="Enter your password">
-                            <div *ngIf="passwordControl.hasError('required') && passwordControl.touched" class="text-danger">Password is required</div>
-                        </div> 
+                            <input type="password" class="form-control" id="password" formControlName="password"
+                                placeholder="Enter your password">
+                            <div *ngIf="tutorLoginForm.get('password')?.hasError('required') && tutorLoginForm.get('password')?.touched"
+                                class="text-danger">Password is required</div>
+                        </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success btn-lg" (click)="onLoginClick()">Login</button>
+                            <button type="submit" class="btn btn-success btn-lg">Login</button>
                         </div>
                     </form>
                 </div>
@@ -29,4 +35,3 @@
         </div>
     </div>
 </div>
-

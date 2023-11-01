@@ -20,6 +20,13 @@ interface Course {
   amount: number;
   imagePath: string;
 }
+interface Instructor {
+  id: number;
+  name: string;
+  courseName:string;
+  imagePath: string;
+}
+
 
 @Component({
   selector: 'app-user-home',
@@ -53,14 +60,14 @@ export class UserHomeComponent implements OnInit,OnDestroy {
   ];
    
   categories:Category[]=[
-    {id:1, icon:'',name: 'Web Development'},
-    {id:2, icon:'',name: 'Data Science'},
-    {id:3, icon:'',name: 'Language'},
-    {id:4, icon:'',name: 'Business'},
-    {id:5, icon:'',name: 'Rocket Science'},
-    {id:6, icon:'',name: 'Photography'},
-    {id:7, icon:'',name: 'DSA'},
-    {id:8, icon:'',name: 'Personal Development'},
+    {id:1, icon:'web',name: 'Web Development'},
+    {id:2, icon:'data_usage',name: 'Data Science'},
+    {id:3, icon:'language',name: 'Language'},
+    {id:4, icon:'business',name: 'Business'},
+    {id:5, icon:'science',name: 'Rocket Science'},
+    {id:6, icon:'photo',name: 'Photography'},
+    {id:7, icon:'engineering',name: 'DSA'},
+    {id:8, icon:'psychology',name: 'Personal Development'},
   ]
 
   courses: Course[] = [
@@ -72,6 +79,17 @@ export class UserHomeComponent implements OnInit,OnDestroy {
     { id: 2, name: 'Course Name 2', amount: 60, imagePath: 'course6.jfif' },
     // Add more courses as needed
   ];
+
+  instructors: Instructor[] = [
+    { id: 1, name: 'Murilo Souza', courseName:'Web Development', imagePath: 'instructor3.jpg' },
+    { id: 2, name: 'Murilo Souza', courseName:'Business', imagePath: 'instructor2.jpg' },
+    { id: 1, name: 'Murilo Souza', courseName:'Personal Development',  imagePath: 'instructor3.jpg' },
+    { id: 2, name: 'Murilo Souza', courseName:'Communication Trainer', imagePath: 'instructop4.jpg' },
+    { id: 1, name: 'Murilo Souza', courseName:'Data Science', imagePath: 'instructor5.jpeg' },
+    { id: 2, name: 'Murilo Souza', courseName:'Photography', imagePath: 'instructor6.jpg' },
+    // Add more courses as needed
+  ];
+
 
   ngOnInit(): void {
     interval(3000)

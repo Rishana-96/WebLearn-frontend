@@ -18,13 +18,15 @@ import { VerifyComponent } from './verify/verify.component';
     TutorSignUpComponent,
     TutorHomeComponent,
     TutorNavComponent,
-    VerifyComponent
+    VerifyComponent,
+    
   ],
   imports: [
     CommonModule,
     TutorRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

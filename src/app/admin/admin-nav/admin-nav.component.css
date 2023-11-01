@@ -5,7 +5,7 @@
     
   }
   .sticky-top{
-    background-color: green;
+    background-color: #35424a; /* Dark background color for navbar */
   }
   
   .container {
@@ -17,7 +17,13 @@
   .logo-icon {
     margin-right: 8px; /* Adjust the margin between the icon and text */
     font-size: 36px; /* Set the font size of the icon */
+    animation: pulse 1.5s infinite; /* Add a pulse animation */
   }
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
   
   .logo-text {
     font-size: 24px; /* Set the font size of the logo text */
@@ -36,7 +42,11 @@
     cursor: pointer;
     color: white; /* Set the color of the logout text */
     text-decoration: none;
+    margin-left: 16px; /* Add margin between logo and logout button */
   }
+  .logout-button:hover {
+    transform: scale(1.05);
+}
   
   .logout-icon {
     margin-right: 8px; /* Adjust the margin between the icon and text */

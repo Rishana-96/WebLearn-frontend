@@ -1,1 +1,43 @@
-<p>tutor-home works!</p>
+<!--------------Tutor section-->
+<!-- <div class=" instructor-section ">
+    <h1 class=" instructor-section-heading">
+        <span>Experience Instructors</span>
+    </h1>
+    <div class="card-container">
+        <mat-card class="card" *ngFor="let instructor of instructors">
+            <div class="card-image" [style.backgroundImage]="'url(' + instructor.imagePath+ ')'"
+                [style.background-size]="'cover'">
+            </div>
+            <h2>{{instructor.name}}</h2>
+            <p>{{instructor.courseName}}</p>
+        </mat-card>
+    </div>
+    <div class="tutor-button">
+        <button mat-raised-button color="success" value="" routerLink="/tutor">Become Instructor</button>
+    </div>
+</div> -->
+<app-tutor-nav>
+</app-tutor-nav><!-- Content specific to the tutor component goes here -->
+<!-- For example: -->
+<div>
+    <!--------------Tutor section-->
+    <div class=" instructor-section ">
+        <h1 class=" instructor-section-heading">
+            <span>Experience Instructors</span>
+        </h1>
+        <div class="card-container">
+            <mat-card class="card" *ngFor="let instructor of instructors">
+                <div class="card-image" [style.backgroundImage]="'url(' + instructor.imagePath+ ')'"
+                    [style.background-size]="'cover'">
+                </div>
+                <h2>{{instructor.name}}</h2>
+                <p>{{instructor.courseName}}</p>
+            </mat-card>
+        </div>
+        <div class="tutor-button">
+            <button mat-raised-button color="success" value="" routerLink="/tutor/register">Become Instructor</button>
+        </div>
+    </div> <!-- Other content related to tutor dashboard -->
+</div>
+
+<app-footer></app-footer>

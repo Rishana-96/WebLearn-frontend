@@ -6,6 +6,8 @@ import { AdminService } from 'src/app/service/admin.service';
 import { environment } from 'src/environments/environment.development';
 import { DialogComponent } from '../dialog/dialog.component';
 import { ToastrService } from 'ngx-toastr';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-tutor-list',
@@ -13,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./tutor-list.component.css']
 })
 export class TutorListComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'qualification', 'email','pdf', 'action'];
+  displayedColumns: string[] = ['position', 'name', 'qualification', 'email', 'cv','status','action'];
   dataSource: MatTableDataSource<any> 
   
   pdfLoaded:boolean=false
@@ -23,24 +25,36 @@ export class TutorListComponent implements OnInit {
      private adminService:AdminService,
      private sanitizer: DomSanitizer,
      private toastr:ToastrService,
-     private dialog:MatDialog
+     private dialog:MatDialog,
+     private cdr: ChangeDetectorRef  // Inject ChangeDetectorRef
      ){
     this.dataSource = new MatTableDataSource<any>([])
   }
   ngOnInit(): void {
-    this.loadTutorList()
+    this.loadApprovedTutors()
   }
 
-  loadTutorList() {
-    this.adminService.loadTutors().subscribe(
+  loadApprovedTutors() {
+    this.adminService.loadApprovedTutors().subscribe(
       (data: any[]) => {
-        this.dataSource = new MatTableDataSource(data);
-        this.test=data
-        console.log(this.test);
+        //console.log(data)
+        
+        //filter approved tutors
+        this.test = data.map(tutor =>({
+          id:tutor._id,
+          name:tutor.name,
+          qualification:tutor.qualification,
+          email:tutor.email,
+          cv:tutor.cv,
+          is_blocked:tutor.is_blocked
+        }))
+        this.dataSource = new MatTableDataSource(this.test);
+      
+        
         
       },
       error => {
-        console.error('Error fetching user list', error);
+        console.error('Error fetching tutor list', error);
       }
     );
   }
@@ -65,37 +79,62 @@ export class TutorListComponent implements OnInit {
     const url = `${environment.User_API_Key}/files/${file}`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
-  approveTutor(tutorId:string,status:string):void{
-  
-    this.adminService.approveTutor(tutorId,status).subscribe(
-      (response)=>{
-        this.toastr.success('Tutor approved')
-        this.loadTutorList()
+
+  blockTutor(element: any): void {
+    if (element && element.id) {
+      
+      
+      const tutorId: string = element.id.toString();
+      this.adminService.blockTutor(tutorId).subscribe(
+        (response) => {
+          
+          console.log(response);
+          this.toastr.success("Tutor blocked successfully");
         
-      }
-    )
+          this.loadApprovedTutors();
+        },
+        (error) => {
+          this.toastr.error("Something went wrong while blocking the tutor");
+          console.error('Error blocking tutor:', error);
+        }
+      );
+    } else {
+      console.error('Invalid or undefined element or element.id');
+    }
   }
-  rejectTutor(tutorId:string,status:string):void{
   
-    // this.adminService.rejectTutor(tutorId,status).subscribe(
-    //   (response)=>{
-    //     this.toastr.success('Tutor rejected')
-    //     this.loadTutorList()
-        
-    //   }
-    // )
 
-    this.dialog.open(DialogComponent,{
-      width:"50%",
-      height:"300px",
-      data:{
-        tutorId,
-        title:"reject approval"
-      }
-    })
+  unblockTutor(element: any): void {
+    console.log(element);
+    
+    if (element && element.id) {
+      const tutorId: string = element.id.toString();
+      this.adminService.unblockTutor(tutorId).subscribe(
+        (response) => {
+          console.log(response);
+          this.toastr.success("Tutor unblocked successfully");
+          this.loadApprovedTutors();
+        },
+        (error) => {
+          this.toastr.error("Something went wrong while blocking the tutor");
+          console.error('Error blocking tutor:', error);
+        }
+      );
+    } else {
+      console.error('Invalid or undefined element or element.id');
+    }
   }
 
-  blockTutor(){
+// unblockTutor(element:any): void {
+//     this.adminService.unblockTutor(element).subscribe((response) => {
+//         this.toastr.success("tutor unblocked successfully");
+//         this.loadApprovedTutors();
+//     }, (error) => {
+//         this.toastr.error("something went wrong");
+//     });
+// }
 
-  }
+
+ 
+  
 }

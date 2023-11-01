@@ -22,7 +22,7 @@ export const userlogoutGuard: CanActivateFn = (route,state)=>{
 
   let token:string | null =localStorage.getItem('userSecret')
 
-  if(token){
+  if(!token){
     return true;
   }else{
     router.navigate(['/login'])

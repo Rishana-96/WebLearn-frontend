@@ -4,7 +4,7 @@
   
   .sidenav {
     width: 200px;
-    background-color: #0c5806; /* Sidebar background color */
+    background-color: #283238; /* Dark background color for sidebar */
     color: white;
   }
   
@@ -17,11 +17,14 @@
   }
   
   mat-nav-list a:hover {
-    background-color: #11f862; /* Hover background color */
+    background-color: #455a64; /* Hover background color for sidebar links */
   }
   
   mat-icon {
     margin-right: 10px;
-    color: #050505;
+    color: #ffffff; /* Icon color */
   }
+  mat-nav-list .active-link {
+    background-color: #1c313a; /* Active link background color */
+}
   
