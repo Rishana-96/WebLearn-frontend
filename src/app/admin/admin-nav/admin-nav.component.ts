@@ -5,27 +5,23 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-admin-nav',
   templateUrl: './admin-nav.component.html',
-  styleUrls: ['./admin-nav.component.css']
+  styleUrls: ['./admin-nav.component.css'],
 })
 export class AdminNavComponent implements OnInit {
+  constructor(private _router: Router, private _toastr: ToastrService) {}
 
-  constructor(private _router:Router,private _toastr:ToastrService){}
-
-  adminLog:boolean=false
+  adminLog: boolean = false;
 
   ngOnInit(): void {
-    let token:string | null = localStorage.getItem('adminSecret')
+    let token: string | null = localStorage.getItem('adminSecret');
 
-    if(token){
-      this.adminLog = true
+    if (token) {
+      this.adminLog = true;
     }
   }
 
-
-  logOut(){
-    localStorage.removeItem('adminSecret')
-    this._router.navigate(['/admin'])
-
+  logOut() {
+    localStorage.removeItem('adminSecret');
+    this._router.navigate(['/admin']);
   }
-
 }

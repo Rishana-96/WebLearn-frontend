@@ -2,21 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TutorService } from 'src/app/service/tutor.service';
+import { TutorService } from '../../service/tutor.service';
 
 @Component({
   selector: 'app-tutor-sign-up',
   templateUrl: './tutor-sign-up.component.html',
-  styleUrls: ['./tutor-sign-up.component.css']
+  styleUrls: ['./tutor-sign-up.component.css'],
 })
 export class TutorSignUpComponent implements OnInit {
-  
-  cvFile !: File 
+  cvFile!: File;
   tutorSignupForm!: FormGroup;
   invalidFile: boolean = false;
-  
-  
-  constructor(private fb: FormBuilder, private toastr: ToastrService, private tutorService: TutorService, private router: Router) { }
+
+  constructor(
+    private fb: FormBuilder,
+    private toastr: ToastrService,
+    private tutorService: TutorService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.tutorSignupForm = this.fb.group({
@@ -26,17 +29,17 @@ export class TutorSignUpComponent implements OnInit {
       password: ['', [Validators.required]],
     });
   }
-  
+
   tutorRegistration(): void {
-    if (this.tutorSignupForm.valid && !this.invalidFile  && this.cvFile) {
-      const form = new FormData()
+    if (this.tutorSignupForm.valid && !this.invalidFile && this.cvFile) {
+      const form = new FormData();
 
       const tutor = this.tutorSignupForm.value;
-      form.append("cv",this.cvFile,this.cvFile.name)
-      form.append("name",tutor.name)
-      form.append("qualification",tutor.qualification)
-      form.append("email",tutor.email)
-      form.append("password",tutor.password)
+      form.append('cv', this.cvFile, this.cvFile.name);
+      form.append('name', tutor.name);
+      form.append('qualification', tutor.qualification);
+      form.append('email', tutor.email);
+      form.append('password', tutor.password);
 
       this.tutorService.tutorSignup(form).subscribe(
         (res) => {
@@ -44,15 +47,17 @@ export class TutorSignUpComponent implements OnInit {
           this.toastr.success('please verify you email');
         },
         (error) => {
-          if(error.error && error.error.message){
+          if (error.error && error.error.message) {
             this.toastr.error(error.error.message);
-          }else{
+          } else {
             this.toastr.error('Registration failed. Please try again.');
           }
         }
       );
     } else {
-      this.toastr.error('Please fill out the form correctly and upload a valid PDF file.');
+      this.toastr.error(
+        'Please fill out the form correctly and upload a valid PDF file.'
+      );
     }
   }
 
@@ -62,8 +67,11 @@ export class TutorSignUpComponent implements OnInit {
       this.cvFile = inputElement.files[0];
       const allowedExtensions = ['pdf'];
       const fileName = this.cvFile.name.toLowerCase();
-      
-      if (!fileName.endsWith('.pdf') || !allowedExtensions.includes(fileName.split('.').pop()!)) {
+
+      if (
+        !fileName.endsWith('.pdf') ||
+        !allowedExtensions.includes(fileName.split('.').pop()!)
+      ) {
         this.invalidFile = true;
       } else {
         this.invalidFile = false;

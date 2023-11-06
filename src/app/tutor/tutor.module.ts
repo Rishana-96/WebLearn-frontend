@@ -1,4 +1,4 @@
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TutorRoutingModule } from './tutor-routing.module';
@@ -10,6 +10,7 @@ import { MaterialModule } from '../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TutorNavComponent } from './tutor-nav/tutor-nav.component';
 import { VerifyComponent } from './verify/verify.component';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 @NgModule({
   declarations: [
@@ -19,15 +20,14 @@ import { VerifyComponent } from './verify/verify.component';
     TutorHomeComponent,
     TutorNavComponent,
     VerifyComponent,
-    
+    AddCourseComponent,
   ],
   imports: [
     CommonModule,
     TutorRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class TutorModule { }
+export class TutorModule {}

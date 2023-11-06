@@ -5,6 +5,9 @@
     "types": ["@angular/core", "node","jasmine"],
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "@cloudinary/*": ["node_modules/@cloudinary/*"]
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "emitDecoratorMetadata": true,

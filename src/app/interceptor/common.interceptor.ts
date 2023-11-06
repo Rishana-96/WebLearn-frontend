@@ -3,49 +3,43 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class CommonInterceptor implements HttpInterceptor {
-
   constructor() {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let userToken = localStorage.getItem("userSecret")
-    let tutorToken = localStorage.getItem("tutorSecret")
-    let adminToken = localStorage.getItem("adminSecret")
-   console.log('intexeo');
-   
-    if(userToken){
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
+    let userToken = localStorage.getItem('userSecret');
+    let tutorToken = localStorage.getItem('tutorSecret');
+    let adminToken = localStorage.getItem('adminSecret');
+
+    if (userToken) {
       const newRequest = request.clone({
-        headers:request.headers.set('Authorization','Bearer '+userToken)
-      })
-      console.log(userToken,'iejeuheurhhrej');
+        headers: request.headers.set('Authorization', 'Bearer ' + userToken),
+      });
+
       return next.handle(request);
     }
-    if(tutorToken){
+    if (tutorToken) {
       const newRequest = request.clone({
-        headers:request.headers.set('Authorization','Bearer '+tutorToken)
-      })
+        headers: request.headers.set('Authorization', 'Bearer ' + tutorToken),
+      });
       console.log(newRequest);
-      return next.handle(newRequest)
-      
+      return next.handle(newRequest);
     }
-    if(adminToken){
-      console.log('in admin'
-      );
-      
+    if (adminToken) {
       const newRequest = request.clone({
-        headers : request.headers.set('Authorization' , 'Bearer ' + adminToken)
-      })
-      console.log('neq',newRequest);
-      
-      return next.handle(newRequest)
+        headers: request.headers.set('Authorization', 'Bearer ' + adminToken),
+      });
+
+      return next.handle(newRequest);
     }
     return next.handle(request);
   }
-  }
-
-
+}

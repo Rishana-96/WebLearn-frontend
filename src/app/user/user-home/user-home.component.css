@@ -1,290 +1,166 @@
-
 .carousel-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .carousel-slide {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    position: relative;
-  }
-  
-  .carousel-slide img {
-    width: 100%;
-    height: auto;
-    display: block;
-    position: relative;
-  }
-  .carousel-slide img:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
-  }
-  .carousel-slide img:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-  }
-  
-  .carousel-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 36px;
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8); /* Text shadow for added depth */
-    max-width: 90%; /* Increase the max-width as per your requirement */
-    line-height: 1.4; /* Increase line height for improved spacing */
-    max-width: 80%; /* Limit the width of the description */
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; /* Add ellipsis for long descriptions */
-  }
-  
-  /* Optional: Add hover effect */
-  .carousel-text:hover {
-    text-decoration: underline; /* Example: Underline text on hover */
-  }
-  .carousel-text .description{
-max-width: 100%;
-  }
-  .carousel-text h2 {
-    color: rgb(225, 11, 11); /* Set the title text color to orange */
-  }
-
-  /* category section*/
-
-  .category-section {
-    background-image: url('../../../assets/home/img1.jpg');
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    grid-gap: 20px; /* Adjust the gap between columns and rows */
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 50px; /* Adjust the padding according to your design */
-    /* Add other styles as needed */
-  }
-  .cat-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 250px; /* Adjust the width of the card */
-    
-  }
-  .card-icon {
-    width: 100px; /* Adjust the icon width */
-    height: 100px; /* Adjust the icon height */
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 20px;
-  }
-  h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333; /* Adjust the text color */
-  }
-  /* Add hover effect if desired */
-.cat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-  max-width: 1200px; /* Adjust the maximum width of the grid */
   width: 100%;
+  overflow: hidden;
+  position: relative;
 }
-.category-section-heading{
-  text-align: center;
+
+.carousel-slide {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+
+.carousel-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 36px;
   font-weight: bold;
-  color: rgb(7, 8, 8);
+  text-align: center;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8); /* Text shadow for added depth */
+  max-width: 90%; /* Increase the max-width as per your requirement */
+  line-height: 1.4; /* Increase line height for improved spacing */
+  max-width: 80%; /* Limit the width of the description */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* Add ellipsis for long descriptions */
+}
+
+/* Optional: Add hover effect */
+.carousel-text:hover {
+  text-decoration: underline; /* Example: Underline text on hover */
+}
+.carousel-text .description {
+  max-width: 100%;
+}
+.carousel-text h2 {
+  color: rgb(225, 11, 11); /* Set the title text color to orange */
 }
 /* Media query for smaller screens */
 @media (max-width: 768px) {
-  .categories-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-}
-
-
-  /* course section*/
-  .course-section {
-    text-align: center;
-    margin: 50px 0;
-  }
-  
-  .card-container {
-    display: grid;
-   /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));*/
-    grid-template-columns: repeat(3, 1fr); /* Set to three columns */
-    gap: 30px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    margin-left: 30px;
-    margin-right: 30px;
-  }
-  
-  .course-section-heading{
-    font-weight: bold;
-    color: rgb(7, 115, 135);
-  }
-  .mat-card {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .mat-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-  }
-  
-  .card-image {
-    width: 100%;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease; /* Add transition for smoother effect */
-  }
-  
-  .card h2 {
-    font-size: 28px;
-    color: #333;
-  }
-  
-  .card p {
-    font-size: 20px;
-    color: #555;
-  }
-  .card-image.course1 {
-    background-image: url('../../../assets/home/course1.jpg'); /* Path to the first course image */
-  }
-  .card-image.course2 {
-    background-image: url('../../../assets/home/course2.png'); /* Path to the first course image */
-  }
-  .card-image.course3 {
-    background-image: url('../../../assets/home/course3.jfif'); /* Path to the first course image */
-  }
-  .card-image.course4 {
-    background-image: url('../../../assets/home/course5.jfif'); /* Path to the first course image */
-  }
-  .card-image.course5 {
-    background-image: url('../../../assets/home/course6.jfif'); /* Path to the first course image */
-  }
-  .card-image.course6 {
-    background-image: url('../../../assets/home/course4.jpg'); /* Path to the first course image */
-  }
-  .card-image::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
-  }
-  .card:hover .card-image {
-    transform: scale(1.05); /* Add a scale effect on hover */
-  }
-  /* Default styles for larger screens */
-
-/* Adjust styles for smaller screens using media queries */
-@media (max-width: 768px) {
-  /* Styles for screens up to 768px width */
-  .carousel-text h2 {
+  .carousel-text {
     font-size: 24px; /* Decrease font size for smaller screens */
   }
-  
-  .categories-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust grid columns for smaller screens */
-  }
+}
 
-  .cat-card {
-    width: 150px; /* Adjust card width for smaller screens */
-  }
-
-  .card-container {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust card columns for smaller screens */
-    gap: 10px; /* Adjust the gap between cards for smaller screens */
-  }
-  .course-section {
-    margin: 20px 0; /* Adjust margin for smaller screens */
+/* Media query for even smaller screens */
+@media (max-width: 480px) {
+  .carousel-text {
+    font-size: 18px; /* Further decrease font size for very small screens */
   }
 }
-
-.card-image.instructor1 {
-  background-image: url('../../../assets/home/instructor3.jpg'); /* Path to the first course image */
-}
-.card-image.course2 {
-  background-image: url('../../../assets/home/instructor2.jpg'); /* Path to the first course image */
-}
-.card-image.course3 {
-  background-image: url('../../../assets/home/instructor3.jpg'); /* Path to the first course image */
-}
-.card-image.course4 {
-  background-image: url('../../../assets/home/instructop4.jpg'); /* Path to the first course image */
-}
-.card-image.course5 {
-  background-image: url('../../../assets/home/instructor5.jpeg'); /* Path to the first course image */
-}
-.card-image.course6 {
-  background-image: url('../../../assets/home/instructor6.jpg'); /* Path to the first course image */
-}
-
-.instructor-section-heading{
-  font-weight: bold;
-  color: rgb(7, 115, 135);
-  text-align: center;
-  font-weight: bold;
-  margin-top: 50px;
-  
-}
-
-.tutor-button {
-  display: flex;
-  align-self: flex-end; /* Align the button to the right */
-  margin-left: 1000px; /* Adjust the margin-right as needed */
-  margin-top: 20px;
-}
-
-.tutor-button button {
-  background-color: green;
-  width: 150px; /* Adjust the width of the button */
+/*course-section*/
+.carousel-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: #fff;
+  font-size: 36px;
   font-weight: bold;
-  align-self: flex-end; /* Align the button to the right */
-  text-transform: uppercase; /* Optionally transform text to uppercase */
+  text-align: center;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+  max-width: 90%;
+  line-height: 1.4;
+  max-width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .carousel-text {
+    font-size: 24px; /* Decrease font size for smaller screens */
+  }
+}
+
+/* Media query for even smaller screens */
+@media (max-width: 480px) {
+  .carousel-text {
+    font-size: 18px; /* Further decrease font size for very small screens */
+  }
+}
+.section {
+  margin-left: 50px;
+  margin-top: 30px;
+}
+.section-heading {
+  font-weight: bold;
+  text-align: center;
+}
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(400px, 1fr)
+  ); /* 3 columns with minimum width of 250px */
+}
+
+.card {
+  width: 400px;
+  margin: 20px;
+  height: 300px; /* Fixed height for the cards */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+}
+.card-image {
+  width: 100%;
+  height: 150px;
+  background-size: cover; /* Resize image to cover the container */
+  background-position: center; /* Center the image within the container */
+  border-radius: 8px; /* Optional: Add border-radius to match the card */
+  margin-bottom: 10px;
+} /* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .card {
+    width: calc(50% - 40px);
+  }
+}
+
+/* Responsive styles for even smaller screens */
+@media (max-width: 480px) {
+  .card {
+    width: calc(100% - 40px);
+  }
+}
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 columns */
+  gap: 20px; /* Gap between cards */
+  justify-content: center; /* Center the cards horizontally */
+}
+.cat-card {
+  width: 100%; /* Ensure cards take full width of their grid cell */
+  text-align: center; /* Center the content inside the cards */
+  padding: 10px;
+  margin-top: 60px;
+}
+.category-section {
+  background-image: url("../../../assets/home/catbgimg.jpg"); /* Path to your background image file */
+  background-size: cover; /* Cover the entire section with the background image */
+  background-repeat: no-repeat; /* Do not repeat the background image */
+  background-position: center center; /* Center the background image */
+  width: 100%;
+  height: 500px;
+}
+.category-heading {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  padding: 30px;
 }

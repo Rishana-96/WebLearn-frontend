@@ -6,21 +6,32 @@ import { TutorHomeComponent } from './tutor-home/tutor-home.component';
 import { VerifyComponent } from './verify/verify.component';
 import { TutorComponent } from './tutor.component';
 import { tutorlogedGuard, tutorlogoutGuard } from '../guard/tutor.guard';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 const routes: Routes = [
-  { path:'',component:TutorComponent},
-  { path:'tutor-login',component:TutorLoginComponent,canActivate:[tutorlogoutGuard]},
-  { path:'tutor-login/:id', component: TutorLoginComponent,canActivate:[tutorlogedGuard]},
-  { path:'tutor-register',component:TutorSignUpComponent,canActivate:[tutorlogoutGuard]},
-  { path:'home',component:TutorHomeComponent,canActivate:[tutorlogedGuard]},
-  { path:'verify', component: VerifyComponent },
-  
-
-
+  { path: '', component: TutorLoginComponent },
+  {
+    path: 'tutor-login',
+    component: TutorLoginComponent,
+  },
+  {
+    path: 'tutor-login/:id',
+    component: TutorLoginComponent,
+  },
+  {
+    path: 'tutor-register',
+    component: TutorSignUpComponent,
+  },
+  {
+    path: 'home',
+    component: TutorHomeComponent,
+  },
+  { path: 'verify', component: VerifyComponent },
+  { path: 'addCourse', component: AddCourseComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class TutorRoutingModule { }
+export class TutorRoutingModule {}
