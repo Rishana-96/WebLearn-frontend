@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserServiceService } from '../../service/user-service.service';
+import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -11,15 +11,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserRegisterComponent implements OnInit {
   registerForm!: FormGroup;
+  hide = true;
 
   constructor(
-    private fb: FormBuilder,
-    private userService: UserServiceService,
-    private router: Router,
-    private toastr: ToastrService
+    private _fb: FormBuilder,
+    private _userService: UserService,
+    private _router: Router,
+    private _toastr: ToastrService
   ) {}
   ngOnInit(): void {
-    this.registerForm = this.fb.group({
+    this.registerForm = this._fb.group({
       name: ['', Validators.required],
       education: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -27,30 +28,33 @@ export class UserRegisterComponent implements OnInit {
       confirmPassword: ['', Validators.required],
     });
   }
-
+  // Method to toggle password visibility
+  togglePasswordVisibility(): void {
+    this.hide = !this.hide;
+  }
   proceedRegistration() {
     if (this.registerForm.valid) {
       if (
         this.registerForm.value.password !==
         this.registerForm.value.confirmPassword
       ) {
-        this.toastr.error('Password and confirm password do not match');
+        this._toastr.error('Password and confirm password do not match');
         return;
       }
       const user = this.registerForm.value;
 
-      this.userService.userRegister(user).subscribe(
+      this._userService.userRegister(user).subscribe(
         (result) => {
-          this.router.navigate(['/verify']);
-          this.toastr.success(
+          this._router.navigate(['/verify']);
+          this._toastr.success(
             'successfully registered,verify your email to continue login'
           );
         },
         (err) => {
           if (err.error.message) {
-            this.toastr.error(err.error.message);
+            this._toastr.error(err.error.message);
           } else {
-            this.toastr.error('something went wrong');
+            this._toastr.error('something went wrong');
           }
         }
       );

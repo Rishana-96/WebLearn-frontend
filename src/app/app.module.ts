@@ -1,5 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PopupComponent } from '../app/modal/popup/popup.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,9 +12,11 @@ import { NgConfirmModule } from 'ng-confirm-box';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { CommonInterceptor } from './interceptor/common.interceptor';
+import { MaterialModule } from './material.module';
 
+//import { CloudinaryModule } from '@cloudinary/ng';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PopupComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,7 +24,9 @@ import { CommonInterceptor } from './interceptor/common.interceptor';
     HttpClientModule,
     NgConfirmModule,
     CarouselModule,
-
+    ReactiveFormsModule,
+    FormsModule,
+    MaterialModule,
     ToastrModule.forRoot(), // ToastrModule added here
   ],
   providers: [

@@ -7,6 +7,7 @@ import { VerifyComponent } from './verify/verify.component';
 import { TutorComponent } from './tutor.component';
 import { tutorlogedGuard, tutorlogoutGuard } from '../guard/tutor.guard';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { TutorProfileComponent } from './tutor-profile/tutor-profile.component';
 
 const routes: Routes = [
   { path: '', component: TutorLoginComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   },
   { path: 'verify', component: VerifyComponent },
   { path: 'addCourse', component: AddCourseComponent },
+  { path: 'home/tutor-profile', component: TutorProfileComponent },
 ];
 
 @NgModule({

@@ -23,8 +23,8 @@ export class CommonInterceptor implements HttpInterceptor {
       const newRequest = request.clone({
         headers: request.headers.set('Authorization', 'Bearer ' + userToken),
       });
-
-      return next.handle(request);
+      console.log(newRequest);
+      return next.handle(newRequest);
     }
     if (tutorToken) {
       const newRequest = request.clone({

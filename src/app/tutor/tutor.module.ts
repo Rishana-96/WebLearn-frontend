@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TutorNavComponent } from './tutor-nav/tutor-nav.component';
 import { VerifyComponent } from './verify/verify.component';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { TutorProfileComponent } from './tutor-profile/tutor-profile.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AddCourseComponent } from './add-course/add-course.component';
     TutorNavComponent,
     VerifyComponent,
     AddCourseComponent,
+    TutorProfileComponent,
   ],
   imports: [
     CommonModule,

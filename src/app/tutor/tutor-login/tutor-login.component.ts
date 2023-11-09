@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, CanActivateChildFn, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TutorService } from 'src/app/service/tutor.service';
+import { TutorService } from '../../service/tutor.service';
 
 @Component({
   selector: 'app-tutor-login',
@@ -21,33 +21,33 @@ export class TutorLoginComponent {
   passwordControl = new FormControl('', [Validators.required]);
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private tutorService: TutorService,
-    private toastr: ToastrService,
-    private route: ActivatedRoute
+    private _fb: FormBuilder,
+    private _router: Router,
+    private _tutorService: TutorService,
+    private _toastr: ToastrService,
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.tutorLoginForm = this.fb.group({
+    this.tutorLoginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
-    this.id = this.route.snapshot.paramMap.get('id');
+    this.id = this._route.snapshot.paramMap.get('id');
     if (this.id) {
       this.verifyTutor();
     }
   }
 
   verifyTutor() {
-    this.tutorService.verifyTutor(this.id).subscribe(
+    this._tutorService.verifyTutor(this.id).subscribe(
       (result) => {
         localStorage.setItem('tutorSecret', result.toString());
-        this.router.navigate(['/tutor-login']);
+        this._router.navigate(['/tutor-login']);
       },
       (err) => {
         const errorMessage = err.error.message || 'Something went wrong';
-        this.toastr.error(errorMessage);
+        this._toastr.error(errorMessage);
       }
     );
   }
@@ -56,19 +56,19 @@ export class TutorLoginComponent {
     if (this.tutorLoginForm.valid) {
       const tutor = this.tutorLoginForm.value;
 
-      this.tutorService.tutorLogin(tutor).subscribe(
+      this._tutorService.tutorLogin(tutor).subscribe(
         (res) => {
           // Tutor application is approved
           localStorage.setItem('tutorSecret', res.toString());
-          this.router.navigate(['/tutor/addCourse']);
+          this._router.navigate(['/tutor/home']);
         },
         (err) => {
           const errorMessage = err.error.message || 'Something went wrong';
-          this.toastr.error(errorMessage);
+          this._toastr.error(errorMessage);
         }
       );
     } else {
-      this.toastr.error('Please fill in all required fields.');
+      this._toastr.error('Please fill in all required fields.');
     }
   }
 }

@@ -15,14 +15,14 @@ export class TutorSignUpComponent implements OnInit {
   invalidFile: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
-    private toastr: ToastrService,
-    private tutorService: TutorService,
-    private router: Router
+    private _fb: FormBuilder,
+    private _toastr: ToastrService,
+    private _tutorService: TutorService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
-    this.tutorSignupForm = this.fb.group({
+    this.tutorSignupForm = this._fb.group({
       name: ['', [Validators.required]],
       qualification: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -41,21 +41,21 @@ export class TutorSignUpComponent implements OnInit {
       form.append('email', tutor.email);
       form.append('password', tutor.password);
 
-      this.tutorService.tutorSignup(form).subscribe(
+      this._tutorService.tutorSignup(form).subscribe(
         (res) => {
-          this.router.navigate(['/tutor/verify']);
-          this.toastr.success('please verify you email');
+          this._router.navigate(['/tutor/verify']);
+          this._toastr.success('please verify you email');
         },
         (error) => {
           if (error.error && error.error.message) {
-            this.toastr.error(error.error.message);
+            this._toastr.error(error.error.message);
           } else {
-            this.toastr.error('Registration failed. Please try again.');
+            this._toastr.error('Registration failed. Please try again.');
           }
         }
       );
     } else {
-      this.toastr.error(
+      this._toastr.error(
         'Please fill out the form correctly and upload a valid PDF file.'
       );
     }

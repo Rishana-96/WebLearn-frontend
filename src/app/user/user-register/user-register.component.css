@@ -10,6 +10,7 @@ body {
   align-items: center;
   background-color: black;
 }
+
 .card-container {
   display: flex;
   gap: 0px; /* Gap between the two cards */

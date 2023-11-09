@@ -29,11 +29,11 @@ export class TutorListComponent implements OnInit {
   test: any;
 
   constructor(
-    private adminService: AdminService,
-    private sanitizer: DomSanitizer,
-    private toastr: ToastrService,
-    private dialog: MatDialog,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+    private _adminService: AdminService,
+    private _sanitizer: DomSanitizer,
+    private _toastr: ToastrService,
+    private _dialog: MatDialog,
+    private _cdr: ChangeDetectorRef // Inject ChangeDetectorRef
   ) {
     this.dataSource = new MatTableDataSource<any>([]);
   }
@@ -42,7 +42,7 @@ export class TutorListComponent implements OnInit {
   }
 
   loadApprovedTutors() {
-    this.adminService.loadApprovedTutors().subscribe(
+    this._adminService.loadApprovedTutors().subscribe(
       (data: any[]) => {
         //console.log(data)
 
@@ -65,7 +65,7 @@ export class TutorListComponent implements OnInit {
 
   openCv(cv: string) {
     if (cv) {
-      this.dialog.open(DialogComponent, {
+      this._dialog.open(DialogComponent, {
         width: '80%',
         height: '700px',
         data: {
@@ -79,21 +79,21 @@ export class TutorListComponent implements OnInit {
 
   getPdf(file: string): SafeResourceUrl {
     const url = `${environment.User_API_Key}/files/${file}`;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    return this._sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   blockTutor(element: any): void {
     if (element && element.id) {
       const tutorId: string = element.id.toString();
-      this.adminService.blockTutor(tutorId).subscribe(
+      this._adminService.blockTutor(tutorId).subscribe(
         (response) => {
           console.log(response);
-          this.toastr.success('Tutor blocked successfully');
+          this._toastr.success('Tutor blocked successfully');
 
           this.loadApprovedTutors();
         },
         (error) => {
-          this.toastr.error('Something went wrong while blocking the tutor');
+          this._toastr.error('Something went wrong while blocking the tutor');
           console.error('Error blocking tutor:', error);
         }
       );
@@ -105,13 +105,13 @@ export class TutorListComponent implements OnInit {
   unblockTutor(element: any): void {
     if (element && element.id) {
       const tutorId: string = element.id.toString();
-      this.adminService.unblockTutor(tutorId).subscribe(
+      this._adminService.unblockTutor(tutorId).subscribe(
         (response) => {
-          this.toastr.success('Tutor unblocked successfully');
+          this._toastr.success('Tutor unblocked successfully');
           this.loadApprovedTutors();
         },
         (error) => {
-          this.toastr.error('Something went wrong while blocking the tutor');
+          this._toastr.error('Something went wrong while blocking the tutor');
           console.error('Error blocking tutor:', error);
         }
       );

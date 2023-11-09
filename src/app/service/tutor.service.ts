@@ -25,6 +25,11 @@ export class TutorService {
     return this.http.post(`${this.apiUrl}/tutor-login`, tutor, httpOptions);
   }
   tutorDetails(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/tutorList`, { withCredentials: true });
+    return this.http.get(`${this.apiUrl}/tutorDetails`, {
+      withCredentials: true,
+    });
+  }
+  saveTutor(tutor: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/tutorSave`, tutor, httpOptions);
   }
 }

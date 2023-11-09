@@ -61,37 +61,37 @@ export class TutorHomeComponent {
       id: 1,
       name: 'Murilo Souza',
       courseName: 'Web Development',
-      imagePath: 'instructor3.jpg',
+      imagePath: 'assets/home/instructor3.jpg',
     },
     {
       id: 2,
       name: 'Murilo Souza',
       courseName: 'Business',
-      imagePath: 'instructor2.jpg',
+      imagePath: 'assets/home/instructor2.jpg',
     },
     {
       id: 1,
       name: 'Murilo Souza',
       courseName: 'Personal Development',
-      imagePath: 'instructor3.jpg',
+      imagePath: 'assets/home/instructor3.jpg',
     },
     {
       id: 2,
       name: 'Murilo Souza',
       courseName: 'Communication Trainer',
-      imagePath: 'instructop4.jpg',
+      imagePath: 'assets/home/instructop4.jpg',
     },
     {
       id: 1,
       name: 'Murilo Souza',
       courseName: 'Data Science',
-      imagePath: 'instructor5.jpeg',
+      imagePath: 'assets/home/instructor5.jpeg',
     },
     {
       id: 2,
       name: 'Murilo Souza',
       courseName: 'Photography',
-      imagePath: 'instructor6.jpg',
+      imagePath: 'assets/home/instructor6.jpg',
     },
     // Add more courses as needed
   ];

@@ -18,14 +18,14 @@ export class AdminLoginComponent implements OnInit {
   loginForm!: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private toastr: ToastrService,
-    private adminService: AdminService
+    private _fb: FormBuilder,
+    private _router: Router,
+    private _toastr: ToastrService,
+    private _adminService: AdminService
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.loginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
@@ -35,21 +35,21 @@ export class AdminLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const admin = this.loginForm.value;
       console.log(admin);
-      this.adminService.adminLogin(admin).subscribe(
+      this._adminService.adminLogin(admin).subscribe(
         (res) => {
           localStorage.setItem('adminSecret', res.toString());
-          this.router.navigate(['/admin/dashboard']);
+          this._router.navigate(['/admin/dashboard']);
         },
         (err) => {
           if (err.error.message) {
-            this.toastr.error(err.error.message);
+            this._toastr.error(err.error.message);
           } else {
-            this.toastr.error('something went wrong');
+            this._toastr.error('something went wrong');
           }
         }
       );
     } else {
-      this.toastr.error('Something went wrong');
+      this._toastr.error('Something went wrong');
     }
   }
 }

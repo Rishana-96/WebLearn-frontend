@@ -1,4 +1,4 @@
-<app-user-nav></app-user-nav>
+<app-tutor-nav></app-tutor-nav>
 
 <div class="container">
   <div class="row">
@@ -11,12 +11,12 @@
         />
         <div class="card-body">
           <h5 class="card-title mb-3">
-            {{ name | uppercase }}
+            <span>{{ name | uppercase }}</span>
           </h5>
           <div class="user-details">
             <p class="user-info">
-              <span class="label">Education:</span>
-              {{ education }}
+              <span class="label">Qualification:</span>
+              {{ qualification }}
             </p>
             <p class="user-info">
               <span class="label">Email:</span> {{ email }}
@@ -30,4 +30,3 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>

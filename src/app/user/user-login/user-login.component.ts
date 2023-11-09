@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserServiceService } from '../../service/user-service.service';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-user-login',
@@ -12,22 +12,22 @@ import { UserServiceService } from '../../service/user-service.service';
 export class UserLoginComponent implements OnInit {
   loginForm!: FormGroup;
   id: any;
-
+  hide = true;
   constructor(
-    private fb: FormBuilder,
-    private userService: UserServiceService,
-    private router: Router,
-    private toastr: ToastrService,
-    private route: ActivatedRoute
+    private _fb: FormBuilder,
+    private _userService: UserService,
+    private _router: Router,
+    private _toastr: ToastrService,
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.loginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
 
-    this.id = this.route.snapshot.paramMap.get('id');
+    this.id = this._route.snapshot.paramMap.get('id');
     if (this.id) {
       this.verifyUser();
     }
@@ -37,35 +37,38 @@ export class UserLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const user = this.loginForm.value;
       console.log(user);
-      this.userService.userLogin(user).subscribe(
-        (res) => {
+      this._userService.userLogin(user).subscribe(
+        (res: { toString: () => string }) => {
           localStorage.setItem('userSecret', res.toString());
-          this.router.navigate(['/']);
+          this._router.navigate(['/']);
         },
-        (err) => {
+        (err: { error: { message: string | undefined } }) => {
           if (err.error.message) {
-            this.toastr.error(err.error.message);
+            this._toastr.error(err.error.message);
           } else {
-            this.toastr.error('something went wrong');
+            this._toastr.error('something went wrong');
           }
         }
       );
     } else {
-      this.toastr.error('Something went wrong');
+      this._toastr.error('Something went wrong');
     }
   }
-
+  // Method to toggle password visibility
+  togglePasswordVisibility(): void {
+    this.hide = !this.hide;
+  }
   verifyUser() {
-    this.userService.verifyUser(this.id).subscribe(
-      (result) => {
+    this._userService.verifyUser(this.id).subscribe(
+      (result: { toString: () => string }) => {
         localStorage.setItem('userSecret', result.toString());
-        this.router.navigate(['/']);
+        this._router.navigate(['/']);
       },
-      (err) => {
+      (err: { error: { message: string | undefined } }) => {
         if (err.error.message) {
-          this.toastr.error(err.error.message);
+          this._toastr.error(err.error.message);
         } else {
-          this.toastr.error('something went wrong');
+          this._toastr.error('something went wrong');
         }
       }
     );

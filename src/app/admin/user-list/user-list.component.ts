@@ -20,8 +20,8 @@ export class UserListComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
 
   constructor(
-    private adminService: AdminService,
-    private toastr: ToastrService
+    private _adminService: AdminService,
+    private _toastr: ToastrService
   ) {
     this.dataSource = new MatTableDataSource<any>([]);
   }
@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit {
     this.loadUserList();
   }
   loadUserList() {
-    this.adminService.loadUsers().subscribe(
+    this._adminService.loadUsers().subscribe(
       (data: any[]) => {
         this.dataSource = new MatTableDataSource(data);
       },
@@ -41,25 +41,25 @@ export class UserListComponent implements OnInit {
   }
 
   blockUser(id: string, name: string): void {
-    this.adminService.blockUser(id).subscribe(
+    this._adminService.blockUser(id).subscribe(
       (res) => {
-        this.toastr.success('user blocked successfully');
+        this._toastr.success('user blocked successfully');
         this.loadUserList();
       },
       (err) => {
-        this.toastr.error('something went wrong');
+        this._toastr.error('something went wrong');
       }
     );
   }
 
   unblockUser(id: string, name: string) {
-    this.adminService.unblockUser(id).subscribe(
+    this._adminService.unblockUser(id).subscribe(
       (res) => {
-        this.toastr.success('User unblocked successfully');
+        this._toastr.success('User unblocked successfully');
         this.loadUserList();
       },
       (err) => {
-        this.toastr.error('something went wrong');
+        this._toastr.error('something went wrong');
       }
     );
   }
