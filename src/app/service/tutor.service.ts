@@ -2,15 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
+import { Tutors } from '../interfaces/interfaces';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'content-Type': 'application/json',
   }),
 };
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class TutorService {
   constructor(private http: HttpClient) {}
   apiUrl: string = environment.Tutor_API_Key;
@@ -18,10 +17,10 @@ export class TutorService {
   tutorSignup(tutor: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, tutor);
   }
-  verifyTutor(id: any): Observable<any> {
+  verifyTutor(id: Tutors): Observable<any> {
     return this.http.post(`${this.apiUrl}/verifyTutor?id=` + id, httpOptions);
   }
-  tutorLogin(tutor: any): Observable<any> {
+  tutorLogin(tutor: Tutors): Observable<any> {
     return this.http.post(`${this.apiUrl}/tutor-login`, tutor, httpOptions);
   }
   tutorDetails(): Observable<any> {
@@ -29,7 +28,7 @@ export class TutorService {
       withCredentials: true,
     });
   }
-  saveTutor(tutor: any): Observable<any> {
+  saveTutor(tutor: Tutors): Observable<any> {
     return this.http.post(`${this.apiUrl}/tutorSave`, tutor, httpOptions);
   }
 }

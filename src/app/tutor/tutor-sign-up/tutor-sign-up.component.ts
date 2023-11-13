@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TutorService } from '../../service/tutor.service';
-
+import { strongPasswordValidator } from '../../strongPassword';
 @Component({
   selector: 'app-tutor-sign-up',
   templateUrl: './tutor-sign-up.component.html',
@@ -13,7 +13,7 @@ export class TutorSignUpComponent implements OnInit {
   cvFile!: File;
   tutorSignupForm!: FormGroup;
   invalidFile: boolean = false;
-
+  hidePassword: Boolean = true;
   constructor(
     private _fb: FormBuilder,
     private _toastr: ToastrService,
@@ -26,11 +26,18 @@ export class TutorSignUpComponent implements OnInit {
       name: ['', [Validators.required]],
       qualification: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, strongPasswordValidator()]],
     });
   }
 
   tutorRegistration(): void {
+    if (
+      this.tutorSignupForm.value.password !==
+      this.tutorSignupForm.value.confirmPassword
+    ) {
+      this._toastr.error('Password and confirm password do not match');
+      return;
+    }
     if (this.tutorSignupForm.valid && !this.invalidFile && this.cvFile) {
       const form = new FormData();
 
@@ -60,7 +67,9 @@ export class TutorSignUpComponent implements OnInit {
       );
     }
   }
-
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
+  }
   onCVFileChange(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {

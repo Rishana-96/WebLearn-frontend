@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from '../../service/admin.service';
+import { Users } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-user-list',
@@ -31,7 +32,7 @@ export class UserListComponent implements OnInit {
   }
   loadUserList() {
     this._adminService.loadUsers().subscribe(
-      (data: any[]) => {
+      (data: Users[]) => {
         this.dataSource = new MatTableDataSource(data);
       },
       (error) => {

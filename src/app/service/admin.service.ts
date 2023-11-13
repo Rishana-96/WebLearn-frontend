@@ -13,9 +13,7 @@ const httpOptions = {
   }),
 };
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AdminService {
   constructor(private http: HttpClient) {}
 

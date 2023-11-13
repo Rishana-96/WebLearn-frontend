@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../service/user.service';
-
+import { strongPasswordValidator } from '../../strongPassword';
+import { Users } from '../../interfaces/interfaces';
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -12,7 +13,7 @@ import { UserService } from '../../service/user.service';
 export class UserLoginComponent implements OnInit {
   loginForm!: FormGroup;
   id: any;
-  hide = true;
+  hide: boolean = true;
   constructor(
     private _fb: FormBuilder,
     private _userService: UserService,
@@ -24,25 +25,24 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, strongPasswordValidator()]],
     });
 
-    this.id = this._route.snapshot.paramMap.get('id');
-    if (this.id) {
+    const id = this._route.snapshot.paramMap.get('id');
+    if (id) {
       this.verifyUser();
     }
   }
 
   proceedLogin() {
     if (this.loginForm.valid) {
-      const user = this.loginForm.value;
-      console.log(user);
+      const user: Users = this.loginForm.value;
       this._userService.userLogin(user).subscribe(
-        (res: { toString: () => string }) => {
+        (res) => {
           localStorage.setItem('userSecret', res.toString());
           this._router.navigate(['/']);
         },
-        (err: { error: { message: string | undefined } }) => {
+        (err) => {
           if (err.error.message) {
             this._toastr.error(err.error.message);
           } else {
@@ -60,7 +60,7 @@ export class UserLoginComponent implements OnInit {
   }
   verifyUser() {
     this._userService.verifyUser(this.id).subscribe(
-      (result: { toString: () => string }) => {
+      (result) => {
         localStorage.setItem('userSecret', result.toString());
         this._router.navigate(['/']);
       },

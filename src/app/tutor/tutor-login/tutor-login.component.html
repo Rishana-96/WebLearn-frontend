@@ -39,13 +39,23 @@
 
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                formControlName="password"
-                placeholder="Enter your password"
-              />
+              <div class="input-group">
+                <input
+                  type="{{ hidePassword ? 'password' : 'text' }}"
+                  class="form-control"
+                  id="password"
+                  formControlName="password"
+                  placeholder="Enter your password"
+                />
+
+                <span
+                  class="input-group-text"
+                  (click)="togglePasswordVisibility()"
+                >
+                  <i class="fas fa-eye" *ngIf="!hidePassword"></i>
+                  <i class="fas fa-eye-slash" *ngIf="hidePassword"></i>
+                </span>
+              </div>
               <div
                 *ngIf="
                   tutorLoginForm.get('password')?.hasError('required') &&

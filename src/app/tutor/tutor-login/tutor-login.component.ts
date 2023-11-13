@@ -8,7 +8,8 @@ import {
 import { ActivatedRoute, CanActivateChildFn, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TutorService } from '../../service/tutor.service';
-
+import { strongPasswordValidator } from '../../strongPassword';
+import { Tutors } from '../../interfaces/interfaces';
 @Component({
   selector: 'app-tutor-login',
   templateUrl: './tutor-login.component.html',
@@ -18,8 +19,11 @@ export class TutorLoginComponent {
   id: any;
   tutorLoginForm!: FormGroup;
   emailControl = new FormControl('', [Validators.required, Validators.email]);
-  passwordControl = new FormControl('', [Validators.required]);
-
+  passwordControl = new FormControl('', [
+    Validators.required,
+    strongPasswordValidator(),
+  ]);
+  hidePassword: boolean = true;
   constructor(
     private _fb: FormBuilder,
     private _router: Router,
@@ -51,10 +55,12 @@ export class TutorLoginComponent {
       }
     );
   }
-
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
+  }
   tutorLogin() {
     if (this.tutorLoginForm.valid) {
-      const tutor = this.tutorLoginForm.value;
+      const tutor: Tutors = this.tutorLoginForm.value;
 
       this._tutorService.tutorLogin(tutor).subscribe(
         (res) => {

@@ -1,7 +1,7 @@
 <app-tutor-nav></app-tutor-nav>
 
 <div class="container">
-  <div class="row justify-content-center mt-5">
+  <div class="row justify-content-center mt-3">
     <div class="col-md-6">
       <div class="card shadow">
         <div class="card-header bg-success text-white">
@@ -83,13 +83,23 @@
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                formControlName="password"
-                placeholder="Enter your password"
-              />
+              <div class="input-group">
+                <input
+                  type="{{ hidePassword ? 'password' : 'text' }}"
+                  class="form-control"
+                  id="password"
+                  formControlName="password"
+                  placeholder="Enter your password"
+                />
+
+                <span
+                  class="input-group-text"
+                  (click)="togglePasswordVisibility()"
+                >
+                  <i class="fas fa-eye" *ngIf="!hidePassword"></i>
+                  <i class="fas fa-eye-slash" *ngIf="hidePassword"></i>
+                </span>
+              </div>
               <div
                 *ngIf="
                   tutorSignupForm.get('password')?.hasError('required') &&
@@ -98,6 +108,55 @@
                 class="text-danger"
               >
                 Password is required
+              </div>
+              <div
+                *ngIf="
+                  tutorSignupForm.get('password')?.hasError('weakPassword') &&
+                  tutorSignupForm.get('password')?.touched
+                "
+                class="text-danger"
+              >
+                Password must be strong (uppercase, lowercase, digit, special
+                character)
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Confirm Password</label>
+              <div class="input-group">
+                <input
+                  type="{{ hidePassword ? 'password' : 'text' }}"
+                  class="form-control"
+                  id="password"
+                  formControlName="password"
+                  placeholder="Confirm your password"
+                />
+
+                <span
+                  class="input-group-text"
+                  (click)="togglePasswordVisibility()"
+                >
+                  <i class="fas fa-eye" *ngIf="!hidePassword"></i>
+                  <i class="fas fa-eye-slash" *ngIf="hidePassword"></i>
+                </span>
+              </div>
+              <div
+                *ngIf="
+                  tutorSignupForm.get('password')?.hasError('required') &&
+                  tutorSignupForm.get('password')?.touched
+                "
+                class="text-danger"
+              >
+                Confirm Password is required
+              </div>
+              <div
+                *ngIf="
+                  tutorSignupForm.get('password')?.hasError('weakPassword') &&
+                  tutorSignupForm.get('password')?.touched
+                "
+                class="text-danger"
+              >
+                Password must be strong (uppercase, lowercase, digit, special
+                character)
               </div>
             </div>
             <div class="mb-3">

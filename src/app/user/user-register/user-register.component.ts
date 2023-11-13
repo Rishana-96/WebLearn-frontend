@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { strongPasswordValidator } from '../../strongPassword';
+import { Users } from '../../interfaces/interfaces';
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
@@ -24,8 +25,8 @@ export class UserRegisterComponent implements OnInit {
       name: ['', Validators.required],
       education: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      confirmPassword: ['', Validators.required],
+      password: ['', [Validators.required, strongPasswordValidator()]],
+      confirmPassword: ['', [Validators.required, strongPasswordValidator()]],
     });
   }
   // Method to toggle password visibility
@@ -41,7 +42,7 @@ export class UserRegisterComponent implements OnInit {
         this._toastr.error('Password and confirm password do not match');
         return;
       }
-      const user = this.registerForm.value;
+      const user: Users = this.registerForm.value;
 
       this._userService.userRegister(user).subscribe(
         (result) => {

@@ -12,6 +12,8 @@ import { TutorNavComponent } from './tutor-nav/tutor-nav.component';
 import { VerifyComponent } from './verify/verify.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { TutorProfileComponent } from './tutor-profile/tutor-profile.component';
+import { AdminService } from '../service/admin.service';
+import { TutorService } from '../service/tutor.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { TutorProfileComponent } from './tutor-profile/tutor-profile.component';
     MaterialModule,
     ReactiveFormsModule,
   ],
+  providers: [TutorService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TutorModule {}

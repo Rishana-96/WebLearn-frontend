@@ -1,60 +1,50 @@
+.course-head {
+  text-align: center;
+  margin-top: 20px;
+}
+.main {
+  background: rgb(222, 222, 222);
+  background: linear-gradient(
+    90deg,
+    rgba(222, 222, 222, 1) 0%,
+    rgba(96, 237, 0, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
 .container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  width: 100%;
-  max-width: 800px; /* Adjust the maximum width as needed */
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  height: 90vh;
 }
 
-.card {
+mat-card {
+  max-width: 600px;
   width: 100%;
-  max-width: 400px;
-  height: 80vh;
+  padding: 20px;
+}
+
+.example-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  margin-bottom: 20px;
-}
-.form-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  width: 100%;
-  margin-bottom: 20px;
+  gap: 20px;
 }
 
 .mat-form-field {
   width: 100%;
 }
 
-.mat-datepicker-toggle {
-  color: #4caf50; /* Color for the datepicker toggle icon */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
-.add-course button {
-  background-color: #4caf50;
+.custom-button {
+  background-color: #2196f3;
   color: white;
-  font-size: 16px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.add-course button:hover {
-  background-color: #45a049;
+.custom-button:hover {
+  background-color: #1565c0;
 }

@@ -15,6 +15,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatStepperModule } from '@angular/material/stepper';
 @NgModule({
   exports: [
     MatToolbarModule,
@@ -33,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatStepperModule,
   ],
   providers: [
     // ... other providers

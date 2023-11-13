@@ -42,8 +42,14 @@
               </button>
               <mat-error
                 *ngIf="loginForm?.get('password')?.hasError('required')"
-                >Password is required</mat-error
+                >Password is required
+              </mat-error>
+              <mat-error
+                *ngIf="loginForm?.get('password')?.hasError('weakPassword')"
               >
+                Password must be strong (uppercase, lowercase, digit, special
+                character)
+              </mat-error>
             </mat-form-field>
             <div class="button-container">
               <button mat-raised-button class="custom-button">Login</button>

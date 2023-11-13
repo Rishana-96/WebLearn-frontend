@@ -1,61 +1,63 @@
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
+  margin: 0;
+  font-family: "Arial", sans-serif;
 }
 
 .main {
-    /*background-image: url('../../../assets/home/3.jpg');*/
-    background-size: cover;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
+  /*background-image: url('../../../assets/home/3.jpg');*/
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1px;
+  background-color: black;
 }
 
 .form-card {
-    width: 400px;
-    text-align: center;
-    padding: 40px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+  width: 400px;
+  text-align: center;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  margin-top: 1px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .form-card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .header-text {
-    color: #026b1e;
+  color: #026b1e;
 }
 
 .example-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .mat-form-field {
-    width: 100%;
+  width: 100%;
 }
 
 .custom-button {
-    background-color: #026b1e;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 14px 40px;
-    border: none;
-    border-radius: 25px; /* Add border-radius for a rounded button */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
-    cursor: pointer;
-    transition: all 0.3s ease;
+  background-color: #026b1e;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 14px 40px;
+  border: none;
+  border-radius: 25px; /* Add border-radius for a rounded button */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .custom-button:hover {
-    background-color: #ffffff;
-    color: #026b1e;
-    transform: scale(1.1);
+  background-color: #ffffff;
+  color: #026b1e;
+  transform: scale(1.1);
 }

@@ -23,7 +23,6 @@ export class TutorProfileComponent implements OnInit {
   ngOnInit(): void {
     this._tutorService.tutorDetails().subscribe(
       (res) => {
-        console.log(res);
         this.name = res.name;
         this.qualification = res.qualification;
         this.email = res.email;

@@ -5,7 +5,7 @@ body {
 
 .main {
   background-size: cover;
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,9 +37,6 @@ body {
   transition: all 0.3s ease;
 }
 
-.form-card:hover {
-  transform: scale(1.05);
-}
 .login-heading {
   color: rgb(13, 105, 124);
   margin-left: 80px;

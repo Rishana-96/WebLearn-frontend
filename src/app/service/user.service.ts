@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
+import { Users } from '../interfaces/interfaces';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -10,25 +11,23 @@ const httpOptions = {
   }),
 };
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class UserService {
   constructor(private _http: HttpClient) {}
 
   apiUrl: string = environment.User_API_Key;
 
-  userRegister(user: any): Observable<any> {
+  userRegister(user: Users): Observable<any> {
     console.log(this.apiUrl);
 
     return this._http.post(`${this.apiUrl}/register`, user, httpOptions);
   }
 
-  userLogin(user: any): Observable<any> {
+  userLogin(user: Users): Observable<any> {
     return this._http.post(`${this.apiUrl}/login`, user, httpOptions);
   }
 
-  verifyUser(id: any): Observable<any> {
+  verifyUser(id: Users): Observable<any> {
     return this._http.post(`${this.apiUrl}/verifyUser?id=` + id, httpOptions);
   }
 
@@ -37,7 +36,7 @@ export class UserService {
       withCredentials: true,
     });
   }
-  saveUser(user: any): Observable<any> {
+  saveUser(user: Users): Observable<any> {
     return this._http.post(`${this.apiUrl}/userSave`, user, httpOptions);
   }
 }

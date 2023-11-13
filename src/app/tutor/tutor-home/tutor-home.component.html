@@ -2,6 +2,16 @@
 ><!-- Content specific to the tutor component goes here -->
 <!-- For example: -->
 <div>
+  <div class="tutor-button">
+    <button
+      mat-raised-button
+      color="warn"
+      value=""
+      routerLink="/tutor/addCourse"
+    >
+      Add Course
+    </button>
+  </div>
   <!--------------Tutor section-->
 
   <div class="section">
@@ -18,11 +28,6 @@
         <h2>{{ instructor.name }}</h2>
         <p>{{ instructor.courseName }}</p>
       </mat-card>
-    </div>
-    <div class="tutor-button">
-      <button mat-raised-button color="success" value="" routerLink="/tutor">
-        Add Course
-      </button>
     </div>
   </div>
   <!-- Other content related to tutor dashboard -->

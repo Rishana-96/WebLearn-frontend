@@ -12,8 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { VerifyComponent } from './verify/verify.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
-
+import { UserService } from '../service/user.service';
 
 @NgModule({
   declarations: [
@@ -24,15 +23,14 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     UserRegisterComponent,
     VerifyComponent,
     FooterComponent,
-    UserProfileComponent
+    UserProfileComponent,
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    
-
-  ]
+  ],
+  providers: [UserService],
 })
-export class UserModule { }
+export class UserModule {}
